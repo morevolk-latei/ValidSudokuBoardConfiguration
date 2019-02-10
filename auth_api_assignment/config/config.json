@@ -1,0 +1,10 @@
+{
+	"dev": {
+		"default_port": 8090,
+		"JWTSecret": "HRS_Hiring_Challenge_development_env"
+	},
+	"production": {
+		"default_port": 8088,
+		"JWTSecret": "HOPE_RESEARCH_GROUP_Hiring_Challenge_production_env"
+	}
+}
