@@ -13,6 +13,17 @@ if (global.env === 'dev') {
 	app.use(require('morgan')('dev'))
 }
 
+// using sqlite3 a file based DB
+try {
+	const  sqlite3  =  require('sqlite3').verbose()
+	global.db = new sqlite3.Database("./users.db")
+	console.log('DB connection successfull')
+	console.log(require('./controller/db').createUsersTable())
+} catch(error) {
+	console.log('Some error ooccured in DB connection ->')
+	console.log(error)
+}
+
 
 const validateRequestMiddleWare = require('./auth')
 const loginController = require('./controller/login')

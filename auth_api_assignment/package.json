@@ -10,8 +10,10 @@
   "author": "Rizul Sharma",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.16.4",
-    "jsonwebtoken": "^8.4.0"
+    "jsonwebtoken": "^8.4.0",
+    "sqlite3": "^4.0.6"
   },
   "devDependencies": {
     "morgan": "^1.9.1"
