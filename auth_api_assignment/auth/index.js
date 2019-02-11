@@ -2,7 +2,10 @@ const jwt = require('jsonwebtoken')
 
 const SECRET_KEY = global.config['JWTSecret']
 
-const isValidHeader = header => header.startsWith('Bearer ')
+const isValidHeader = header => {
+	console.log({ header })
+	return header && header.split(' ')[0] === 'Bearer'
+}
 
 const isTokenValid = token =>
 	new Promise((resolve, reject) => {

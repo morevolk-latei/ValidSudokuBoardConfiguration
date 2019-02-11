@@ -15,10 +15,32 @@ const validateFieldsHelper = fields => {
 function validateFields (req, res, next) {
 	const { body } = req
 	const { username, password } = body
+	console.log('obdy', req.body)
 
 	console.log('fields -> ', { username, password })
 
 	const errors = validateFieldsHelper({ username, password })
+
+	if (errors.length > 0) {
+		return res.status(400).json({
+			message: 'Invalid Request',
+			data: [...errors]
+		})
+	}
+
+	// if control flow reaches here means both username and password is present
+	// call next middleware
+
+	next()
+}
+
+function validateResetFields (req, res, next) {
+	const { body } = req
+	const { username, currentPassword, newPassword } = body
+
+	console.log('reset fields -> ', { username, currentPassword, newPassword })
+
+	const errors = validateFieldsHelper({ username, currentPassword, newPassword })
 
 	if (errors.length > 0) {
 		return res.status(400).json({
@@ -50,5 +72,6 @@ const generateAccessToken = (hashData) =>
 
 module.exports = {
 	validateFields,
-	generateAccessToken
+	generateAccessToken,
+	validateResetFields
 }

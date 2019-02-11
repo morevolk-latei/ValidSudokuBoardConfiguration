@@ -14,6 +14,17 @@ const  findUserByEmail  = (email, cb) => {
     })
 }
 
+const resetPassword = (email, newPassword) =>
+    new Promise(( resolve, reject ) => {
+        global.db.run(`UPDATE users SET password = ? WHERE username = ?`, [newPassword, email], (err, row) => {
+            if (err) {
+                return reject(err)
+            }
+
+            resolve(row)
+        })
+    })
+
 const  createUser  = (user, cb) => 
     new Promise(( resolve, reject ) => {
         global.db.run('INSERT INTO users (username, password) VALUES (?,?)',user, (err) => {
@@ -28,5 +39,6 @@ const  createUser  = (user, cb) =>
 module.exports = {
     createUsersTable,
     findUserByEmail,
+    resetPassword,
     createUser
 }

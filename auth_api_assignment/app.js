@@ -29,10 +29,12 @@ const validateRequestMiddleWare = require('./auth')
 const loginController = require('./controller/login')
 const storeDataController = require('./controller/storeData')
 const signUpController = require('./controller/signUp')
+const resetPassController = require('./controller/reset')
 
 app.use('/login', loginController)
 app.use('/signUp', signUpController)
 app.use('/storeData', validateRequestMiddleWare, storeDataController)
+app.use('/resetPassword', validateRequestMiddleWare, resetPassController)
 
 app.get('/', (req, res) => {
 	res.json({
